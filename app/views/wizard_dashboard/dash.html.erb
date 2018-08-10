@@ -1,0 +1,40 @@
+<div class="container-fluid">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light"> <a class="navbar-brand" href="#">Wizard</a>
+		<div id='email'> <%= current_wizard.email %> </div>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+			  <li class="navbar-nav nav-item"> <a class="nav-link disabled" href="#"><%= link_to 'Sign Out', destroy_wizard_session_path, :method => :delete %> </a>  </li>
+      </div>
+  </nav>
+</div>
+
+<div class="all-claims grid-container">
+  <div class="full main-claim">
+  <% first = @open_events.first %>
+  <% if @open_events == [] %>
+    <%= "nothin' happening" %>
+  <% else %>
+    <%= first.name %>
+    <%= first.event_time %>
+    <% if current_wizard.working_magic == false %>
+      <%= form_tag do %>
+        <%= submit_tag "Claim" %>
+      <% end %>
+    <% else %>
+      <%= "can't charm two people" %>
+    <% end %>
+  </div>
+  <div class="claims">
+    <% @open_events.offset(1).limit(5).each do |event| %>
+      <div id="list">
+        <%= event.name %>
+        <%= event.event_time %>
+      </div>
+      <br>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="remaining">
+    <%= @open_events.count - 1 %> remaining
+  </div>
+</div>
