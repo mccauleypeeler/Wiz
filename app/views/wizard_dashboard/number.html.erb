@@ -2,3 +2,7 @@
   <%= @claimed.name %>
   <%= @claimed.number %>
 <% end %>
+
+<%= link_to disconnect_path, remote: true, method: :put do %>
+  <%= submit_tag 'Disconnect' %>
+<% end %>

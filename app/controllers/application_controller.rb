@@ -4,4 +4,6 @@ class ApplicationController < ActionController::Base
 
      devise_parameter_sanitizer.permit(:account_update, keys: [:number])
    end
+   def home
+   end
 end

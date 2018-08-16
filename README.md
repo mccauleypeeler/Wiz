@@ -9,4 +9,4 @@ The employee dashboard is the view, dash.html.erb. When an employee or 'Wizard' 
 
 The user who's ticket was claimed now has their number revealed to the button clicking Wizard, allowing that employee to call the user and troubleshoot. The Wizard's @working_magic status in the model is then changed from false to true, preventing them from claiming another ticket on the dashboard, since they are then troubleshooting.
 
-The site is currently on Heroku.
+The site is currently on Heroku - https://wizard-magic-app.herokuapp.com

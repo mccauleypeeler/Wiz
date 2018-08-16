@@ -8,15 +8,29 @@
       	  </div>
   </nav>
 </div>
-<div class="row">
-	<div class="col-lg-12"><% if current_user.event_status %>
-    <%= link_to toggle_button_path, remote: true, method: :put do %>
-      <%= image_tag "green.png", class: "button" %>
-    <% end %>
-  <% else %>
-    <%= link_to toggle_button_path, remote: true, method: :put do %>
-        <%= image_tag "button.png", class: "button" %>
-    <% end %>
-  <% end %>
+<div class="container" id="button-cont">
+	<div class="row">
+		<div class="col-lg-12">
+
+			<% if current_user.event_status && current_user.claim_status %>
+				<%= link_to toggle_off_path, remote: true, method: :put do %>
+					<%= image_tag "button.png", class: "button" %>
+				<% end %>
+			<% elsif current_user.event_status && current_user.claim_status == false %>
+				<div class='container'>
+					Waiting for a wizard...
+				</div>
+				<%= link_to toggle_off_path, remote: true, method: :put do %>
+					<%= image_tag "button_blank.png", class: "button" %>
+				<% end %>
+				<%= link_to toggle_off_path, remote: true, method: :put do %>
+					<%= submit_tag 'Cancel', class: "btn" %>
+				<% end %>
+		  <% else %>
+				<%= link_to toggle_on_path, remote: true, method: :put do %>
+		      <%= image_tag "green.png", class: "button" %>
+		    <% end %>
+			<% end %>
+		</div>
 	</div>
 </div>

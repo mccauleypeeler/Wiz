@@ -18,10 +18,13 @@
     <%= first.event_time %>
     <% if current_wizard.working_magic == false %>
       <%= form_tag do %>
-        <%= submit_tag "Claim" %>
+        <%= submit_tag "Claim", class: 'btn' %>
       <% end %>
     <% else %>
       <%= "can't charm two people" %>
+			<%= link_to disconnect_path, remote: true, method: :put do %>
+			  <%= submit_tag 'Disconnect' %>
+			<% end %>
     <% end %>
   </div>
   <div class="claims">
