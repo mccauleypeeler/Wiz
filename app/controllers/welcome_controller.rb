@@ -19,9 +19,8 @@ class WelcomeController < ApplicationController
   end
 
   def tog_off
-    user.update(event_status: false, claim_status: false)
+    Wizard.find(current_user.active_wizard).update(working_magic: false)
+    user.update(event_status: false, claim_status: false, active_wizard: 0)
     redirect_to show_dash_path
   end
-
-  
 end

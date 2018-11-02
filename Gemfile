@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.3.7'
+ruby '2.5.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
 # Use sqlite3 as the database for Active Record
-
+gem 'twilio-ruby'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -16,6 +16,7 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 gem 'jquery-rails'
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -32,7 +33,7 @@ gem 'devise'
 gem 'bootstrap'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'carrierwave', '~> 1.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
@@ -49,6 +50,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'sqlite3'
+  gem 'rspec-rails', '~> 3.8'
 end
 
 group :production do
@@ -62,6 +64,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  gem 'rspec-rails', '~> 3.8'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

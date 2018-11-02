@@ -1,5 +1,5 @@
 class WizardDashboardController < ApplicationController
-  before_action :authenticate_wizard!
+  before_action :authenticate_wizard!, :claimed
   helper_method :to_claim
 
   def to_claim
@@ -11,19 +11,24 @@ class WizardDashboardController < ApplicationController
   end
 
   def claim
-    to_claim.update(claim_status: true)
+    @claimed = to_claim
+    @claimed.update(claim_status: true, active_wizard: current_wizard.id)
     current_wizard.update(working_magic: true)
-
-    redirect_to number_path(id: to_claim.id)
+    redirect_to dashboard_path
   end
 
   def number
-    @claimed = to_claim
+    # @claimed = to_claim
   end
 
   def disconnect
     current_wizard.update(working_magic: false)
-    to_claim.update(active_wizard: nil)
+    @claimed_user.update(active_wizard: nil, claim_status: false, event_status: false)
     redirect_to dashboard_path
   end
+
+  private
+    def claimed
+      @claimed_user = User.find_by(active_wizard: current_wizard.id)
+    end
 end

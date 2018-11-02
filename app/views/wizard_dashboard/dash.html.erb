@@ -7,6 +7,12 @@
       </div>
   </nav>
 </div>
+<% if current_wizard.working_magic %>
+You are currently helping <%= @claimed_user.name %>
+<%= link_to disconnect_path, remote: true, method: :put do %>
+	<%= submit_tag 'Disconnect' %>
+<% end %>
+<% end %>
 
 <div class="all-claims grid-container">
   <div class="full main-claim">
@@ -38,6 +44,6 @@
     <% end %>
   </div>
   <div class="remaining">
-    <%= @open_events.count - 1 %> remaining
+    <%= @open_events.count %> people waiting
   </div>
 </div>

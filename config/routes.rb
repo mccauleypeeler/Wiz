@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :wizards
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
+
   root 'application#home'
   get 'show', to: 'welcome#show', as: 'show_dash'
   put 'active', to: 'welcome#tog_on', as: 'toggle_on'
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
   post '/dash', to: 'wizard_dashboard#claim'
   put '/disconnect', to: 'wizard_dashboard#disconnect', as: 'disconnect'
 
-  get 'number', to: 'wizard_dashboard#number'
+
+  put 'number', to: 'wizard_dashboard#number'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
